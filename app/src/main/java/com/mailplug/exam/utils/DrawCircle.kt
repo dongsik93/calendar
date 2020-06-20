@@ -17,8 +17,8 @@ class DrawCircle {
 //        val rect = RectF()
 //        rect.set(160.toFloat(), 140.toFloat(), 360.toFloat(), 640.toFloat())
 //        canvas.drawArc(rect, 0.toFloat(), 360.toFloat(), true, paint)
-
 //        imageView.setImageBitmap(bitmap)
+        
         when (color) {
             "y" -> imageView.setImageDrawable(appContext.getDrawable(R.drawable.circle_yellow))
             "b" -> imageView.setImageDrawable(appContext.getDrawable(R.drawable.circle_blue))
