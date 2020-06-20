@@ -16,7 +16,7 @@ import com.mailplug.exam.databinding.ItemDayEmptyBinding
 import com.mailplug.exam.ui.viewmodel.CalendarHeaderViewModel
 import com.mailplug.exam.ui.viewmodel.CalendarViewModel
 import com.mailplug.exam.ui.viewmodel.EmptyViewModel
-import com.mailplug.exam.utils.DateFormat
+import com.mailplug.exam.utils.DrawCircle
 import java.util.*
 
 
@@ -122,9 +122,6 @@ class CalendarAdapter :
     // 비어있는 요일 타입 ViewHolder
     private class EmptyViewHolder(private val binding: ItemDayEmptyBinding) : ViewHolder(binding.root) {
         fun setViewModel(model: EmptyViewModel) {
-            println("-------")
-            println(model)
-            println("-------")
             binding.executePendingBindings()
         }
     }
@@ -133,6 +130,20 @@ class CalendarAdapter :
     private class DayViewHolder(private val binding: ItemDayBinding) : ViewHolder(binding.root) {
         fun setViewModel(model: CalendarViewModel) {
             TextBindingAdapter.setDayText(binding.txDay, model.mCalendar.value)
+            if (binding.txDay.text == "20") {
+                DrawCircle().makeCircle(binding.circleRed, "r")
+                DrawCircle().makeCircle(binding.circleBlue, "b")
+                DrawCircle().makeCircle(binding.circleYellow, "y")
+            }
+
+            if (binding.txDay.text == "10") {
+                DrawCircle().makeCircle(binding.circleRed, "r")
+                DrawCircle().makeCircle(binding.circleYellow, "y")
+            }
+
+            if (binding.txDay.text == "15") {
+                DrawCircle().makeCircle(binding.circleRed, "r")
+            }
             binding.executePendingBindings()
         }
     }

@@ -1,10 +1,10 @@
 package com.mailplug.exam.ui.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mailplug.exam.data.TSLiveData
 
 class CalendarHeaderViewModel : ViewModel() {
-    val mHeaderDate : TSLiveData<Long> = TSLiveData()
+    val mHeaderDate : MutableLiveData<Long> = MutableLiveData()
 
     fun setHeaderDate(headerDate: Long) {
         mHeaderDate.value = headerDate

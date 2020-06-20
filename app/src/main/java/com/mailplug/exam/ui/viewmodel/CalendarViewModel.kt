@@ -1,12 +1,12 @@
 package com.mailplug.exam.ui.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mailplug.exam.data.TSLiveData
 import java.util.*
 
 
 class CalendarViewModel : ViewModel() {
-    var mCalendar: TSLiveData<Calendar> = TSLiveData<Calendar>()
+    var mCalendar: MutableLiveData<Calendar> = MutableLiveData()
 
     fun setCalendar(calendar: Calendar) {
         mCalendar.value = calendar
