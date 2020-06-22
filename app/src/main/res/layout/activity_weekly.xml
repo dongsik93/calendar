@@ -1,59 +1,114 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.WeeklyActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="match_parent">
+        <!-- year month week layout -->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_calendar"
+            android:id="@+id/ymwLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="0dp"
+            android:background="#E0E0E0"
+            app:layout_constraintDimensionRatio="7:0.85"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/btn_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/date_picker"
+            <TextView
+                android:id="@+id/ymwTxtView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!--달력뷰-->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/weekly_total"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_date"/>
-
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_content"
+            android:id="@+id/daysLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cl_calendar">
+            android:background="#E0E0E0"
+            app:layout_constraintTop_toBottomOf="@+id/ymwLayout">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/weekly_detail"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/sunTxtView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                android:text="일"
+                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintEnd_toStartOf="@+id/monTxtView"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/monTxtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="월"
+                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintEnd_toStartOf="@+id/tueTxtView"
+                app:layout_constraintStart_toEndOf="@+id/sunTxtView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tueTxtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="화"
+                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintEnd_toStartOf="@+id/wedTxtView"
+                app:layout_constraintStart_toEndOf="@+id/monTxtView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/wedTxtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수"
+                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintEnd_toStartOf="@+id/thuTxtView"
+                app:layout_constraintStart_toEndOf="@+id/tueTxtView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/thuTxtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="목"
+                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintEnd_toStartOf="@+id/friTxtView"
+                app:layout_constraintStart_toEndOf="@+id/wedTxtView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/friTxtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="금"
+                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintEnd_toStartOf="@+id/satTxtView"
+                app:layout_constraintStart_toEndOf="@+id/thuTxtView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/satTxtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="토"
+                app:layout_constraintDimensionRatio="2:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/friTxtView"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/daysRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/daysLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
