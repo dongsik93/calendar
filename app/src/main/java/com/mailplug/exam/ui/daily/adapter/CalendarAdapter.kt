@@ -1,4 +1,4 @@
-package com.mailplug.exam.ui.adapter
+package com.mailplug.exam.ui.daily.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,9 +13,9 @@ import com.mailplug.exam.bindingAdapter.TextBindingAdapter
 import com.mailplug.exam.databinding.ItemCalendarHeaderBinding
 import com.mailplug.exam.databinding.ItemDayBinding
 import com.mailplug.exam.databinding.ItemDayEmptyBinding
-import com.mailplug.exam.ui.viewmodel.CalendarHeaderViewModel
-import com.mailplug.exam.ui.viewmodel.CalendarViewModel
-import com.mailplug.exam.ui.viewmodel.EmptyViewModel
+import com.mailplug.exam.ui.daily.viewmodel.CalendarHeaderViewModel
+import com.mailplug.exam.ui.daily.viewmodel.CalendarViewModel
+import com.mailplug.exam.ui.daily.viewmodel.EmptyViewModel
 import com.mailplug.exam.utils.DrawCircle
 import java.util.*
 
@@ -61,7 +61,9 @@ class CalendarAdapter :
             val params = binding.root.layoutParams as StaggeredGridLayoutManager.LayoutParams
             params.isFullSpan = true //Span을 하나로 통합하기
             binding.root.layoutParams = params
-            return HeaderViewHolder(binding)
+            return HeaderViewHolder(
+                binding
+            )
         } else if (viewType == EMPTY_TYPE) {
             val binding = DataBindingUtil.inflate<ItemDayEmptyBinding>(
                 LayoutInflater.from(parent.context),
@@ -69,7 +71,9 @@ class CalendarAdapter :
                 parent,
                 false
             )
-            return EmptyViewHolder(binding)
+            return EmptyViewHolder(
+                binding
+            )
         }
         val binding = DataBindingUtil.inflate<ItemDayBinding>(
             LayoutInflater.from(parent.context),
@@ -77,7 +81,9 @@ class CalendarAdapter :
             parent,
             false
         )
-        return DayViewHolder(binding)
+        return DayViewHolder(
+            binding
+        )
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
@@ -86,7 +92,8 @@ class CalendarAdapter :
             HEADER_TYPE -> {
                 val holder: HeaderViewHolder = viewHolder as HeaderViewHolder
                 val item = getItem(position)
-                val model = CalendarHeaderViewModel()
+                val model =
+                    CalendarHeaderViewModel()
                 if (item is Long) {
                     model.setHeaderDate(item)
                 }
@@ -102,7 +109,8 @@ class CalendarAdapter :
             DAY_TYPE -> {
                 val holder: DayViewHolder = viewHolder as DayViewHolder
                 val item = getItem(position)
-                val model = CalendarViewModel()
+                val model =
+                    CalendarViewModel()
                 if (item is Calendar) {
                     model.setCalendar(item)
                 }

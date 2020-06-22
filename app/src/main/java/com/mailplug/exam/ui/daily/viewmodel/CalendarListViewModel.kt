@@ -1,4 +1,4 @@
-package com.mailplug.exam.ui.viewmodel
+package com.mailplug.exam.ui.daily.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

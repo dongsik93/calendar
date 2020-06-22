@@ -1,16 +1,16 @@
-package com.mailplug.exam
+package com.mailplug.exam.ui.daily
 
 import android.app.DatePickerDialog
-import android.content.DialogInterface
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.mailplug.exam.BR
+import com.mailplug.exam.R
 import com.mailplug.exam.databinding.ActivityMainBinding
-import com.mailplug.exam.ui.adapter.CalendarAdapter
-import com.mailplug.exam.ui.viewmodel.CalendarListViewModel
+import com.mailplug.exam.ui.daily.adapter.CalendarAdapter
+import com.mailplug.exam.ui.daily.viewmodel.CalendarListViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -29,14 +29,19 @@ class MainActivity : AppCompatActivity() {
 
         initView()
         initAdapter()
-        subscribeObserve()
+        subscribeObserver()
         setClickListener()
 
     }
 
     private fun initView() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.setVariable(BR._all, CalendarListViewModel())
+        binding = DataBindingUtil.setContentView(this,
+            R.layout.activity_main
+        )
+        binding.setVariable(
+            BR._all,
+            CalendarListViewModel()
+        )
         vm.initCalendarList(year, month)
         binding.lifecycleOwner = this
     }
@@ -48,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         binding.calendar.adapter = calendarAdapter
     }
 
-    private fun subscribeObserve() {
+    private fun subscribeObserver() {
         vm.mCalendarList.observe(this, Observer {
             calendarAdapter.submitList(it)
         })
