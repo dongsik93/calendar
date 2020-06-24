@@ -8,17 +8,12 @@ import com.mailplug.exam.Appbase.Companion.appContext
 import com.mailplug.exam.databinding.ItemWeeklyBinding
 import com.mailplug.exam.ui.weekly.Day
 import com.mailplug.exam.ui.weekly.Week
-import java.util.*
 
-class WeeklyAdapter(
-    private val weeks: Vector<Week>,
-    private val today: String,
-    startDay: String
-) : RecyclerView.Adapter<WeeklyAdapter.WeeklyViewHolder>() {
+class WeeklyAdapter(private val weeks: MutableList<Week>, private val today: String) : RecyclerView.Adapter<WeeklyAdapter.WeeklyViewHolder>() {
 
     private val context = appContext
-    private var iToday: Int = today.replace("-", "").toInt()
-    private var iStartDay: Int = startDay.replace("-", "").toInt()
+//    private var iToday: Int = today.replace("-", "").toInt()
+//    private var iStartDay: Int = startDay.replace("-", "").toInt()
 
     private lateinit var txtViews: Array<TextView>
 
@@ -50,7 +45,7 @@ class WeeklyAdapter(
         binding.satTxtView.text = week.day7.day
 
         //오늘 날짜를 크기를 크게
-        for (i in 0 until txtViews.size) {
+        for (i in txtViews.indices) {
             val today = todays(position, i)
             if (today == this.today) {
                 txtViews[i].scaleX = 1.75f
@@ -67,35 +62,19 @@ class WeeklyAdapter(
         return weeks.size
     }
 
-    class WeeklyViewHolder(var binding: ItemWeeklyBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    }
+    class WeeklyViewHolder(var binding: ItemWeeklyBinding) : RecyclerView.ViewHolder(binding.root)
 
     fun todays(pos1: Int, pos2: Int): String {
         val week = weeks[pos1]
         var day: Day? = null
         when (pos2) {
-            0 -> {
-                day = week.day1
-            }
-            1 -> {
-                day = week.day2
-            }
-            2 -> {
-                day = week.day3
-            }
-            3 -> {
-                day = week.day4
-            }
-            4 -> {
-                day = week.day5
-            }
-            5 -> {
-                day = week.day6
-            }
-            6 -> {
-                day = week.day7
-            }
+            0 -> day = week.day1
+            1 -> day = week.day2
+            2 -> day = week.day3
+            3 -> day = week.day4
+            4 -> day = week.day5
+            5 -> day = week.day6
+            6 -> day = week.day7
         }
         return "${day!!.year}-${day.month}-${day.day}"
     }
